@@ -1087,6 +1087,11 @@ h4 {
 }
 
 
+/* Responsive Beauty Profile button toggle */
+.mobile-btn {
+    display: none;
+}
+
 /* ============================================
    TABLET — max-width: 1024px
    ============================================ */
@@ -1094,6 +1099,13 @@ h4 {
     :root {
         --section-py: 60px;
         --container-px: 28px;
+    }
+
+    .desktop-btn {
+        display: none !important;
+    }
+    .mobile-btn {
+        display: inline-flex !important;
     }
 
     .hero {
@@ -1132,6 +1144,57 @@ h4 {
     
 }
 
+
+/* ============================================
+   10. ANIMATIONS & HOVER EFFECTS
+   ============================================ */
+.animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* Enhanced Hover Effects */
+.btn {
+    transition: background-color var(--ease), color var(--ease), border-color var(--ease), transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(45, 32, 23, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.product-card {
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(45, 32, 23, 0.08);
+}
+
+.badge-card {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.badge-card:hover {
+    transform: translateY(-4px);
+    background-color: var(--cream-light);
+}
 
 /* ============================================
    MOBILE — max-width: 768px
@@ -1234,21 +1297,33 @@ h4 {
     }
 
     /* Hero */
+    /* Hero — overlay layout for mobile */
     .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         aspect-ratio: unset;
-        min-height: 90vw;
-        background-position: center top;
-        background: linear-gradient(to right,
-                rgba(45, 32, 23, 0.55) 0%,
-                rgba(45, 32, 23, 0.30) 35%,
-                transparent 65%),
-            url('assets/hero background-mobile.webp');
+        min-height: 125vw;
+        padding: 40px var(--container-px);
+        background: linear-gradient(rgba(45, 32, 23, 0.65), rgba(45, 32, 23, 0.65)),
+            url('assets/hero background.webp');
         background-size: cover;
+        background-position: 75% center;
     }
 
+    .hero::before {
+        display: none;
+    }
+
+    /* Text block */
     .hero-content {
-        padding-top: 60px;
-        padding-bottom: 32px;
+        padding: 0;
+        background-color: transparent;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
     }
 
     .hero h1 {
@@ -1265,8 +1340,15 @@ h4 {
         margin-bottom: 24px;
     }
 
+    .hero-text {
+        max-width: 100%;
+    }
+
     .hero-brand {
-        margin-bottom: 24px;
+        position: static;
+        text-align: left;
+        margin-top: 40px;
+        margin-bottom: 10px;
     }
 
     .hero-brand-name {
@@ -1327,22 +1409,33 @@ h4 {
         grid-template-columns: 1fr;
     }
 
+    /* Beauty Profile — overlay layout for mobile */
     .beauty-profile .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px var(--container-px);
         min-height: unset;
-        background-image: linear-gradient(rgba(224, 187, 136, 0.7), rgba(250, 246, 240, 0.7)), url('assets/beauty profile-mobile.webp');
+        background-image: linear-gradient(rgba(224, 187, 136, 0.6), rgba(250, 246, 240, 0.7)), url('assets/beauty profile.webp');
         background-size: cover;
         background-position: left top;
-        padding-top: 48px;
-        padding-bottom: 48px;
     }
 
+    .beauty-profile .container::before {
+        display: none;
+    }
+
+    /* Text block — sits inside the background */
     .beauty-profile-grid {
         max-width: 100%;
-        margin-top: 220px;
+        margin-top: 0;
+        background-color: transparent;
+        padding: 0;
+        text-align: left;
     }
 
     .beauty-profile-info h2 {
-        font-size: 28px;
+        font-size: 26px;
     }
 
     /* Footer */
@@ -1351,18 +1444,26 @@ h4 {
         gap: 32px;
     }
 
-    }
-
-
     /* Modal */
     .modal-overlay {
         padding: 16px;
-}
+    }
 
+}
 /* ============================================
    SMALL MOBILE — max-width: 480px
    ============================================ */
 @media (max-width: 480px) {
+    .hero {
+        min-height: 110vw;
+        background-position: 85% center;
+    }
+
+    .hero-content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
     .hero h1 {
         font-size: 30px;
     }
@@ -1398,25 +1499,9 @@ h4 {
     }
 
     .beauty-profile-info h2 {
-        font-size: 24px;
+        font-size: 22px;
     }
 }
-
-
-
-/* Desktop vs Mobile Beauty Profile Buttons */
-.mobile-btn {
-    display: none;
-}
-@media (max-width: 1024px) {
-    .desktop-btn {
-        display: none !important;
-    }
-    .mobile-btn {
-        display: inline-flex !important;
-    }
-}
-
 
 /* Screen reader only utility */
 .sr-only {
