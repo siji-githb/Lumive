@@ -3,10 +3,10 @@
     /* Colors */
     --gold: #C9A96E;
     --gold-light: #D4B87A;
-    --gold-dark: #8B6F3A;
+    --gold-dark: #7B5F2C;     /* darkened: was #8B6F3A — now 5.97:1 on white */
     --brown-dark: #2D2017;
     --brown-medium: #5A4A3A;
-    --brown-light: #8B7B6B;
+    --brown-light: #705E52;   /* darkened: was #8B7B6B — now 6.15:1 on white */
     --cream: #FBF7F2;
     --cream-light: #FFF9F3;
     --white: #FFFFFF;
@@ -164,6 +164,8 @@ h4 {
     background-color: var(--white);
     border-bottom: 1px solid var(--border-color);
     padding: 12px 0;
+    /* Needed for the mobile dropdown to anchor correctly */
+    isolation: isolate;
 }
 
 .site-header .container {
@@ -223,21 +225,17 @@ h4 {
 /* 3. HERO */
 .hero {
     position: relative;
-    background: url('assets/hero background.webp') center / 100% 100% no-repeat;
-    min-height: 125vh;
-    overflow: hidden;
-}
-
-/* Gradient overlay for text readability */
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    aspect-ratio: 1500 / 880;
     background: linear-gradient(to right,
             rgba(45, 32, 23, 0.55) 0%,
             rgba(45, 32, 23, 0.30) 35%,
-            transparent 65%);
-    pointer-events: none;
+            transparent 65%),
+        url('assets/hero background.webp');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -294,7 +292,7 @@ h4 {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-top: 60px;
+    margin-bottom:150px;
 }
 
 .hero-brand-name {
@@ -424,8 +422,6 @@ h4 {
 .product-card img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
     border-radius: var(--radius-sm);
     margin-bottom: 16px;
 }
@@ -486,9 +482,7 @@ h4 {
 
 .about-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin-left: -80px;
+    height: auto;
 }
 
 .about-text {
@@ -614,10 +608,8 @@ h4 {
 }
 
 .review-author img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
+    max-width: 100%;
+    height: auto;
 }
 
 .review-author cite {
@@ -659,17 +651,21 @@ h4 {
 /* 8. BEAUTY PROFILE */
 .beauty-profile {
     background-color: var(--cream);
+}
+
+.beauty-profile .container {
     background-image: url('assets/beauty profile bg.webp');
     background-position: center;
-    background-size: cover;
+    background-size: auto 100%;
     background-repeat: no-repeat;
-    padding: var(--section-py) 0;
+    min-height: 675px;
+    display: flex;
+    align-items: center;
 }
 
 .beauty-profile-grid {
     max-width: 580px;
     margin: 0 auto;
-    transform: translateX(75px);
 }
 
 .beauty-profile-info .section-label {
@@ -715,7 +711,7 @@ h4 {
     flex-shrink: 0;
 }
 
-.profile-feature-text h4 {
+.profile-feature-text h3 {
     font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 600;
@@ -732,6 +728,22 @@ h4 {
 
 .beauty-profile-cta {
     margin-top: 36px;
+}
+
+/* Inline form — hidden on desktop, shown on mobile/tablet */
+.beauty-profile-inline-form {
+    display: none;
+    margin-top: 40px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--white);
+    box-shadow: var(--shadow-card);
+}
+
+.beauty-profile-inline-form iframe {
+    display: block;
+    width: 100%;
+    border: none;
 }
 
 /* ---- Modal ---- */
@@ -892,8 +904,8 @@ h4 {
 
 .faq-item[open] summary::before {
     content: '−';
-    background-color: var(--gold);
-    border-color: var(--gold);
+    background-color: var(--gold-dark);
+    border-color: var(--gold-dark);
     color: var(--white);
 }
 
@@ -918,7 +930,7 @@ h4 {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr 1fr;
     gap: 40px;
     padding-bottom: 48px;
 }
@@ -939,11 +951,11 @@ h4 {
 
 .footer-brand p {
     font-size: 13px;
-    color: var(--brown-light);
+    color: #C2AF9E; /* lightened from --brown-light: 7.46:1 on dark bg */
     line-height: 1.6;
 }
 
-.footer-links h4 {
+.footer-links h3 {
     font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
@@ -961,7 +973,7 @@ h4 {
 
 .footer-links a {
     font-size: 13px;
-    color: var(--brown-light);
+    color: #C2AF9E; /* lightened from --brown-light: 7.46:1 on dark bg */
     transition: color var(--ease);
 }
 
@@ -976,7 +988,7 @@ h4 {
 
 .footer-bottom p {
     font-size: 12px;
-    color: var(--brown-light);
+    color: #C2AF9E; /* lightened for dark bg contrast */
     text-align: center;
 }
 
@@ -1013,4 +1025,372 @@ h4 {
 
 .hero .btn-primary:hover {
     animation: none;
+}
+
+
+/* ============================================
+   RESPONSIVE NAVIGATION (Hamburger)
+   ============================================ */
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--ease);
+    z-index: 200;
+}
+
+.nav-toggle:hover {
+    background-color: var(--cream);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--brown-dark);
+    border-radius: 2px;
+    transition: transform 0.35s ease, opacity 0.35s ease, width 0.35s ease;
+    transform-origin: center;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(45, 32, 23, 0.4);
+    z-index: 149;
+    opacity: 0;
+    transition: opacity var(--ease);
+    pointer-events: none;
+}
+
+.nav-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* ============================================
+   TABLET — max-width: 1024px
+   ============================================ */
+@media (max-width: 1024px) {
+    :root {
+        --section-py: 60px;
+        --container-px: 28px;
+    }
+
+    .hero {
+        aspect-ratio: unset;
+        min-height: 55vw;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid {
+        gap: 32px;
+    }
+
+    .beauty-profile .container {
+        min-height: 500px;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    /* Hide modal button; show inline embedded form instead */
+    .beauty-profile-cta {
+        display: none;
+    }
+
+    .beauty-profile-inline-form {
+        display: block;
+    }
+}
+
+
+/* ============================================
+   MOBILE — max-width: 768px
+   ============================================ */
+@media (max-width: 768px) {
+    :root {
+        --section-py: 48px;
+        --container-px: 20px;
+    }
+
+    /* Announcement bar */
+    .announcement-bar .container {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+
+    /* Show hamburger */
+    .nav-toggle {
+        display: flex;
+    }
+
+    /* Raise header so dropdown renders above page sections */
+    .site-header {
+        z-index: 200;
+        overflow: visible;
+    }
+
+    /* Mobile nav — dropdown from header */
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        z-index: 150;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 8px 24px rgba(45, 32, 23, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.25s ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .main-nav.is-open {
+        max-height: 80vh;
+        opacity: 1;
+        pointer-events: auto;
+        overflow-y: auto;
+    }
+
+    /* No full-screen overlay needed for dropdown — just hide it */
+    .nav-overlay {
+        display: none;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        padding: 8px 0;
+    }
+
+    .main-nav ul li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .main-nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav a {
+        display: block;
+        padding: 16px var(--container-px);
+        font-size: 15px;
+        color: var(--brown-dark);
+        transition: background-color var(--ease), color var(--ease);
+    }
+
+    .main-nav a:hover {
+        background-color: var(--cream-light);
+        color: var(--gold-dark);
+    }
+
+    .main-nav a::after {
+        display: none;
+    }
+
+    /* Hero */
+    .hero {
+        aspect-ratio: unset;
+        min-height: 90vw;
+        background-position: center top;
+    }
+
+    .hero-content {
+        padding-top: 60px;
+        padding-bottom: 32px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 11px;
+    }
+
+    .hero-tagline {
+        font-size: 13px;
+        margin-bottom: 24px;
+    }
+
+    .hero-brand {
+        margin-bottom: 24px;
+    }
+
+    .hero-brand-name {
+        font-size: 20px;
+    }
+
+    /* Trust Badges */
+    .badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .badge-card {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 16px;
+    }
+
+    .badge-card:nth-child(odd) {
+        border-right: 1px solid var(--border-color);
+    }
+
+    .badge-card:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+
+    /* Products */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* About */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .about-text {
+        padding: 40px 0;
+        transform: none;
+    }
+
+    .about-icons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .about-icon {
+        min-width: 80px;
+    }
+
+    /* Reviews */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Beauty Profile */
+    .beauty-profile .container {
+        min-height: unset;
+        background-size: cover;
+        background-position: center;
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .beauty-profile-grid {
+        max-width: 100%;
+    }
+
+    .beauty-profile-info h2 {
+        font-size: 28px;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    /* Modal */
+    .modal-overlay {
+        padding: 16px;
+    }
+}
+
+
+/* ============================================
+   SMALL MOBILE — max-width: 480px
+   ============================================ */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero-brand-name {
+        font-size: 17px;
+        letter-spacing: 2px;
+    }
+
+    .badges-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .badge-card {
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .badge-card:last-child {
+        border-bottom: none;
+    }
+
+    .about-icons {
+        gap: 20px;
+    }
+
+    .beauty-profile-info h2 {
+        font-size: 24px;
+    }
+}
+
+/* Screen reader only utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }

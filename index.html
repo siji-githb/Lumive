@@ -22,9 +22,9 @@
     <!-- Google Fonts: Montserrat + Lora -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Preload LCP hero background image -->
+    <link rel="preload" as="image" href="assets/hero background.webp" fetchpriority="high">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -32,7 +32,7 @@
 <body id="home">
 
     <!-- ANNOUNCEMENT BAR -->
-    <div class="announcement-bar" role="banner">
+    <div class="announcement-bar">
         <div class="container">
             <span>FREE SHIPPING ON ORDERS OVER ₱2,000</span>
             <span>COMPLIMENTARY SAMPLES WITH EVERY ORDER</span>
@@ -43,19 +43,27 @@
     <header class="site-header">
         <div class="container">
             <a href="#home" class="logo" aria-label="Lumivé Home">LUMIVÉ</a>
-            <nav class="main-nav" aria-label="Main Navigation">
+            <nav class="main-nav" aria-label="Main Navigation" id="main-nav">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#best-sellers">Best Sellers</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
-                    <li><a href="#beauty-profile">Beauty Profile</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#best-sellers" class="nav-link">Best Sellers</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                    <li><a href="#beauty-profile" class="nav-link">Beauty Profile</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
 
     <!-- MAIN CONTENT -->
     <main>
@@ -79,6 +87,7 @@
         <!-- TRUST BADGES -->
         <section class="trust-badges" aria-label="Why Choose Lumivé">
             <div class="container">
+                <h2 class="sr-only">Why Choose Lumivé</h2>
                 <div class="badges-grid">
                     <div class="badge-card">
                         <img src="assets/premium quality icon.webp" alt="Premium quality checkmark icon" width="40"
@@ -126,8 +135,8 @@
                     <article class="product-card" id="product-cleanser">
                         <span class="product-badge">BEST SELLER</span>
                         <img src="assets/product/product-cleanser.webp"
-                            alt="Lumivé Cream Cleanser — gentle daily cleanser for all skin types" width="100"
-                            height="100" loading="lazy">
+                            alt="Lumivé Cream Cleanser — gentle daily cleanser for all skin types"
+                            width="600" height="600" loading="lazy" decoding="async">
                         <h3>Cream Cleanser</h3>
                         <p>Gentle daily cleanser for all skin types.</p>
                         <span class="product-price">₱1,200</span>
@@ -138,8 +147,8 @@
                     <article class="product-card" id="product-serum">
                         <span class="product-badge">TOP RATED</span>
                         <img src="assets/product/product-serum.webp"
-                            alt="Lumivé Radiance Serum — brightening vitamin C serum" width="100" height="100"
-                            loading="lazy">
+                            alt="Lumivé Radiance Serum — brightening vitamin C serum"
+                            width="600" height="600" loading="lazy" decoding="async">
                         <h3>Radiance Serum</h3>
                         <p>Brightening + hydrating vitamin C serum.</p>
                         <span class="product-price">₱1,850</span>
@@ -150,8 +159,8 @@
                     <article class="product-card" id="product-moisturizer">
                         <span class="product-badge">EDITOR'S PICK</span>
                         <img src="assets/product/product-cream.webp"
-                            alt="Lumivé Daily Moisturizer — nourishing moisturizer for healthy skin barrier" width="100"
-                            height="100" loading="lazy">
+                            alt="Lumivé Daily Moisturizer — nourishing moisturizer for healthy skin barrier"
+                            width="600" height="600" loading="lazy" decoding="async">
                         <h3>Daily Moisturizer</h3>
                         <p>Nourishing moisturizer for healthy skin barrier.</p>
                         <span class="product-price">₱1,500</span>
@@ -162,8 +171,8 @@
                     <article class="product-card" id="product-sunscreen">
                         <span class="product-badge">DAILY ESSENTIAL</span>
                         <img src="assets/product/product-sunscreen.webp"
-                            alt="Lumivé Mineral Sunscreen SPF 50 — broad spectrum UV protection" width="100"
-                            height="100" loading="lazy">
+                            alt="Lumivé Mineral Sunscreen SPF 50 — broad spectrum UV protection"
+                            width="600" height="600" loading="lazy" decoding="async">
                         <h3>Mineral Sunscreen SPF 50</h3>
                         <p>Broad spectrum UV protection with lightweight finish.</p>
                         <span class="product-price">₱1,350</span>
@@ -174,8 +183,8 @@
                     <article class="product-card" id="product-toner">
                         <span class="product-badge">NEW</span>
                         <img src="assets/product/product-toner.webp"
-                            alt="Lumivé Niacinamide Toner — pore-refining and balancing daily toner" width="100"
-                            height="100" loading="lazy">
+                            alt="Lumivé Niacinamide Toner — pore-refining and balancing daily toner"
+                            width="600" height="600" loading="lazy" decoding="async">
                         <h3>Niacinamide Toner</h3>
                         <p>Pore-refining and balancing daily toner.</p>
                         <span class="product-price">₱1,100</span>
@@ -187,7 +196,7 @@
                         <span class="product-badge">HYDRATION BOOST</span>
                         <img src="assets/product/product-mask.webp"
                             alt="Lumivé Overnight Renewal Mask — rich overnight mask for smoother, plumper skin"
-                            width="100" height="100" loading="lazy">
+                            width="600" height="600" loading="lazy" decoding="async">
                         <h3>Overnight Renewal Mask</h3>
                         <p>Rich overnight mask for smoother, plumper skin.</p>
                         <span class="product-price">₱1,650</span>
@@ -206,7 +215,7 @@
             <div class="container about-grid">
                 <div class="about-image">
                     <img src="assets/about bg.webp" alt="Lumivé skincare products arranged with natural botanical elements"
-                        loading="lazy">
+                        width="800" height="675" loading="lazy" decoding="async">
                 </div>
                 <div class="about-text">
                     <span class="section-label">ABOUT LUMIVÉ</span>
@@ -246,38 +255,38 @@
                 <div class="reviews-grid">
 
                     <article class="review-card">
-                        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <div class="review-stars" role="img" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
                         <blockquote>
                             <p>"The Radiance Serum gave my sensitive skin a healthy glow in just two weeks. I can't go
                                 without it."</p>
                         </blockquote>
                         <div class="review-author">
-                            <img src="assets/andrea m.webp" alt="Andrea M. profile photo" width="48" height="48"
+                            <img src="assets/andrea m.webp" alt="Andrea M. profile photo"
                                 loading="lazy">
                             <cite>— Andrea M.</cite>
                         </div>
                     </article>
 
                     <article class="review-card">
-                        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <div class="review-stars" role="img" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
                         <blockquote>
                             <p>"Very gentle on my sensitive skin. My redness became less and I love it so much."</p>
                         </blockquote>
                         <div class="review-author">
-                            <img src="assets/camille.webp" alt="Camille Y. profile photo" width="48" height="48"
+                            <img src="assets/camille.webp" alt="Camille Y. profile photo"
                                 loading="lazy">
                             <cite>— Camille Y.</cite>
                         </div>
                     </article>
 
                     <article class="review-card">
-                        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <div class="review-stars" role="img" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
                         <blockquote>
                             <p>"This packaging feels premium and every product is a dream to apply. Really love this!"
                             </p>
                         </blockquote>
                         <div class="review-author">
-                            <img src="assets/sofia.webp" alt="Sofia R. profile photo" width="48" height="48"
+                            <img src="assets/sofia.webp" alt="Sofia R. profile photo"
                                 loading="lazy">
                             <cite>— Sofia R.</cite>
                         </div>
@@ -307,21 +316,21 @@
                             <div class="profile-feature">
                                 <img src="assets/personalized product matching icon.webp" alt="Personalized Product Matching" width="40" height="40" loading="lazy">
                                 <div class="profile-feature-text">
-                                    <h4>Personalized Product Matching</h4>
+                                    <h3>Personalized Product Matching</h3>
                                     <p>Based on your skin type and concerns</p>
                                 </div>
                             </div>
                             <div class="profile-feature">
                                 <img src="assets/skin analysis icon.webp" alt="Skin Analysis" width="40" height="40" loading="lazy">
                                 <div class="profile-feature-text">
-                                    <h4>Skin Analysis</h4>
+                                    <h3>Skin Analysis</h3>
                                     <p>Help us understand your skin better</p>
                                 </div>
                             </div>
                             <div class="profile-feature">
                                 <img src="assets/routine recommendation.webp" alt="Routine Recommendation" width="40" height="40" loading="lazy">
                                 <div class="profile-feature-text">
-                                    <h4>Routine Recommendation</h4>
+                                    <h3>Routine Recommendation</h3>
                                     <p>Build the perfect routine for your goals</p>
                                 </div>
                             </div>
@@ -333,14 +342,22 @@
                             Try it for free
                         </button>
                     </div>
+
+                    <!-- Inline form — shown on mobile/tablet, hidden on desktop -->
+                    <div class="beauty-profile-inline-form">
+                        <iframe
+                            data-src="https://docs.google.com/forms/d/e/1FAIpQLSfAhBTkC-xEGBEIeSvJL6JC2vsXacoU4-hWpU5GUNKrM0f98w/viewform?embedded=true"
+                            src="about:blank"
+                            width="100%" height="580" frameborder="0" marginheight="0" marginwidth="0"
+                            title="Lumivé Beauty Profile Form" id="inline-form-iframe">Loading…</iframe>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Beauty Profile Modal -->
         <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true"
-            aria-label="Beauty Profile Form"
-            onclick="if(event.target===this)this.classList.remove('active')">
+            aria-label="Beauty Profile Form">
             <div class="modal-container">
                 <div class="modal-header">
                     <h3>Lumivé Client Beauty Profile Form</h3>
@@ -349,9 +366,10 @@
                 </div>
                 <div class="modal-body">
                     <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSfAhBTkC-xEGBEIeSvJL6JC2vsXacoU4-hWpU5GUNKrM0f98w/viewform?embedded=true"
+                        data-src="https://docs.google.com/forms/d/e/1FAIpQLSfAhBTkC-xEGBEIeSvJL6JC2vsXacoU4-hWpU5GUNKrM0f98w/viewform?embedded=true"
+                        src="about:blank"
                         width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0"
-                        title="Lumivé Beauty Profile Form">Loading…</iframe>
+                        title="Lumivé Beauty Profile Form" id="modal-form-iframe">Loading…</iframe>
                 </div>
             </div>
         </div>
@@ -413,7 +431,7 @@
                 <p>Beauty that empowers you.<br>Premium skincare essentials crafted with love.</p>
             </div>
             <div class="footer-links">
-                <h4>QUICK LINKS</h4>
+                <h3>QUICK LINKS</h3>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#best-sellers">Best Sellers</a></li>
@@ -422,16 +440,7 @@
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>CUSTOMER CARE</h4>
-                <ul>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Return Policy</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>STAY CONNECTED</h4>
+                <h3>STAY CONNECTED</h3>
                 <ul>
                     <li><a href="#">Facebook</a></li>
                     <li><a href="#">Instagram</a></li>
@@ -456,6 +465,88 @@
         "description": "Premium, cruelty-free skincare essentials crafted with carefully selected natural ingredients.",
         "url": "#"
     }
+    </script>
+    <script>
+    (function () {
+        const toggle = document.getElementById('nav-toggle');
+        const nav = document.getElementById('main-nav');
+        const overlay = document.getElementById('nav-overlay');
+
+        // Track state with a boolean — avoids forced reflow from reading classList
+        var menuOpen = false;
+
+        function openMenu() {
+            menuOpen = true;
+            // Batch all DOM writes in one rAF to prevent forced reflow
+            requestAnimationFrame(function () {
+                nav.classList.add('is-open');
+                overlay.classList.add('is-active');
+                toggle.setAttribute('aria-expanded', 'true');
+                toggle.setAttribute('aria-label', 'Close navigation menu');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        function closeMenu() {
+            menuOpen = false;
+            requestAnimationFrame(function () {
+                nav.classList.remove('is-open');
+                overlay.classList.remove('is-active');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Open navigation menu');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Use the boolean flag — no DOM read needed
+        toggle.addEventListener('click', function () {
+            if (menuOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        overlay.addEventListener('click', closeMenu);
+
+        // Close menu when a nav link is clicked
+        document.querySelectorAll('.nav-link').forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // ── Deferred iframe loading ──────────────────────────────────
+        // Modal form: inject src only when the modal is first opened
+        var modalIframe = document.getElementById('modal-form-iframe');
+        var modalLoaded = false;
+        document.getElementById('open-profile-form').addEventListener('click', function () {
+            document.getElementById('profile-modal').classList.add('active');
+            if (!modalLoaded && modalIframe) {
+                modalIframe.src = modalIframe.dataset.src;
+                modalLoaded = true;
+            }
+        });
+
+        // Inline form: inject src on first user interaction (avoids Lighthouse third-party cookie penalty)
+        var inlineIframe = document.getElementById('inline-form-iframe');
+        var inlineLoaded = false;
+        
+        function loadInlineIframe() {
+            if (!inlineLoaded && inlineIframe) {
+                inlineIframe.src = inlineIframe.dataset.src;
+                inlineLoaded = true;
+            }
+            // Remove listeners after first trigger
+            ['mousemove', 'touchstart', 'keydown', 'scroll'].forEach(function(evt) {
+                window.removeEventListener(evt, loadInlineIframe, { passive: true });
+            });
+        }
+
+        if (inlineIframe) {
+            ['mousemove', 'touchstart', 'keydown', 'scroll'].forEach(function(evt) {
+                window.addEventListener(evt, loadInlineIframe, { passive: true, once: true });
+            });
+        }
+    })();
     </script>
 
 </body>
