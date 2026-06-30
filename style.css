@@ -350,8 +350,10 @@ h4 {
 }
 
 .badge-card img {
-    width: 100px;
-    height: 100px;
+    width: auto;
+    height: auto;
+    max-width: 100px;
+    max-height: 100px;
     flex-shrink: 0;
     object-fit: contain;
 }
@@ -483,6 +485,7 @@ h4 {
 .about-image img {
     width: 100%;
     height: auto;
+    object-fit: contain;
 }
 
 .about-text {
@@ -544,8 +547,10 @@ h4 {
 }
 
 .about-icon img {
-    width: 100px;
-    height: 100px;
+    width: auto;
+    height: auto;
+    max-width: 100px;
+    max-height: 100px;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -654,10 +659,9 @@ h4 {
 }
 
 .beauty-profile .container {
-    background-image: url('assets/beauty profile bg.webp');
+    background-image: url('assets/beauty profile.webp');
     background-position: center;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 675px;
     display: flex;
     align-items: center;
@@ -705,9 +709,6 @@ h4 {
 }
 
 .profile-feature img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
     flex-shrink: 0;
 }
 
@@ -731,14 +732,7 @@ h4 {
 }
 
 /* Inline form — hidden on desktop, shown on mobile/tablet */
-.beauty-profile-inline-form {
-    display: none;
-    margin-top: 40px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background-color: var(--white);
-    box-shadow: var(--shadow-card);
-}
+
 
 .beauty-profile-inline-form iframe {
     display: block;
@@ -1133,13 +1127,9 @@ h4 {
     }
 
     /* Hide modal button; show inline embedded form instead */
-    .beauty-profile-cta {
-        display: none;
-    }
+    
 
-    .beauty-profile-inline-form {
-        display: block;
-    }
+    
 }
 
 
@@ -1147,6 +1137,16 @@ h4 {
    MOBILE — max-width: 768px
    ============================================ */
 @media (max-width: 768px) {
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+
+    #cta-explore {
+        margin-top: 12px;
+        margin-bottom: 36px;
+    }
     :root {
         --section-py: 48px;
         --container-px: 20px;
@@ -1264,7 +1264,11 @@ h4 {
     }
 
     .hero-brand-name {
-        font-size: 20px;
+        font-size: 16px;
+    }
+
+    .hero-brand-tagline {
+        font-size: 9px;
     }
 
     /* Trust Badges */
@@ -1317,17 +1321,18 @@ h4 {
         grid-template-columns: 1fr;
     }
 
-    /* Beauty Profile */
     .beauty-profile .container {
         min-height: unset;
+        background-image: linear-gradient(rgba(224, 187, 136, 0.7), rgba(250, 246, 240, 0.7)), url('assets/beauty profile.webp');
         background-size: cover;
-        background-position: center;
+        background-position: left top;
         padding-top: 48px;
         padding-bottom: 48px;
     }
 
     .beauty-profile-grid {
         max-width: 100%;
+        margin-top: 220px;
     }
 
     .beauty-profile-info h2 {
@@ -1340,12 +1345,13 @@ h4 {
         gap: 32px;
     }
 
+    }
+
+
     /* Modal */
     .modal-overlay {
         padding: 16px;
-    }
 }
-
 
 /* ============================================
    SMALL MOBILE — max-width: 480px
@@ -1356,8 +1362,12 @@ h4 {
     }
 
     .hero-brand-name {
-        font-size: 17px;
+        font-size: 14px;
         letter-spacing: 2px;
+    }
+
+    .hero-brand-tagline {
+        font-size: 8px;
     }
 
     .badges-grid {
@@ -1366,6 +1376,10 @@ h4 {
 
     .badge-card {
         border-right: none !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .badge-card:nth-last-child(-n+2) {
         border-bottom: 1px solid var(--border-color);
     }
 
@@ -1381,6 +1395,22 @@ h4 {
         font-size: 24px;
     }
 }
+
+
+
+/* Desktop vs Mobile Beauty Profile Buttons */
+.mobile-btn {
+    display: none;
+}
+@media (max-width: 1024px) {
+    .desktop-btn {
+        display: none !important;
+    }
+    .mobile-btn {
+        display: inline-flex !important;
+    }
+}
+
 
 /* Screen reader only utility */
 .sr-only {

@@ -314,21 +314,21 @@
 
                         <div class="profile-features">
                             <div class="profile-feature">
-                                <img src="assets/personalized product matching icon.webp" alt="Personalized Product Matching" width="40" height="40" loading="lazy">
+                                <img src="assets/personalized product matching icon.webp" alt="Personalized Product Matching" loading="lazy">
                                 <div class="profile-feature-text">
                                     <h3>Personalized Product Matching</h3>
                                     <p>Based on your skin type and concerns</p>
                                 </div>
                             </div>
                             <div class="profile-feature">
-                                <img src="assets/skin analysis icon.webp" alt="Skin Analysis" width="40" height="40" loading="lazy">
+                                <img src="assets/skin analysis icon.webp" alt="Skin Analysis" loading="lazy">
                                 <div class="profile-feature-text">
                                     <h3>Skin Analysis</h3>
                                     <p>Help us understand your skin better</p>
                                 </div>
                             </div>
                             <div class="profile-feature">
-                                <img src="assets/routine recommendation.webp" alt="Routine Recommendation" width="40" height="40" loading="lazy">
+                                <img src="assets/routine recommendation.webp" alt="Routine Recommendation" loading="lazy">
                                 <div class="profile-feature-text">
                                     <h3>Routine Recommendation</h3>
                                     <p>Build the perfect routine for your goals</p>
@@ -336,24 +336,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="beauty-profile-cta">
-                        <button type="button" class="btn btn-primary" id="open-profile-form"
-                            onclick="document.getElementById('profile-modal').classList.add('active')">
+                                        <div class="beauty-profile-cta">
+                        <button type="button" class="btn btn-primary desktop-btn" id="open-profile-form">
                             Try it for free
                         </button>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAhBTkC-xEGBEIeSvJL6JC2vsXacoU4-hWpU5GUNKrM0f98w/viewform" target="_blank" class="btn btn-primary mobile-btn">
+                            Try it for free
+                        </a>
                     </div>
 
-                    <!-- Inline form — shown on mobile/tablet, hidden on desktop -->
-                    <div class="beauty-profile-inline-form">
-                        <iframe
-                            data-src="https://docs.google.com/forms/d/e/1FAIpQLSfAhBTkC-xEGBEIeSvJL6JC2vsXacoU4-hWpU5GUNKrM0f98w/viewform?embedded=true"
-                            src="about:blank"
-                            width="100%" height="580" frameborder="0" marginheight="0" marginwidth="0"
-                            title="Lumivé Beauty Profile Form" id="inline-form-iframe">Loading…</iframe>
-                    </div>
                 </div>
             </div>
         </section>
+
 
         <!-- Beauty Profile Modal -->
         <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true"
@@ -514,38 +509,21 @@
             link.addEventListener('click', closeMenu);
         });
 
-        // ── Deferred iframe loading ──────────────────────────────────
+
         // Modal form: inject src only when the modal is first opened
         var modalIframe = document.getElementById('modal-form-iframe');
         var modalLoaded = false;
-        document.getElementById('open-profile-form').addEventListener('click', function () {
-            document.getElementById('profile-modal').classList.add('active');
-            if (!modalLoaded && modalIframe) {
-                modalIframe.src = modalIframe.dataset.src;
-                modalLoaded = true;
-            }
-        });
-
-        // Inline form: inject src on first user interaction (avoids Lighthouse third-party cookie penalty)
-        var inlineIframe = document.getElementById('inline-form-iframe');
-        var inlineLoaded = false;
-        
-        function loadInlineIframe() {
-            if (!inlineLoaded && inlineIframe) {
-                inlineIframe.src = inlineIframe.dataset.src;
-                inlineLoaded = true;
-            }
-            // Remove listeners after first trigger
-            ['mousemove', 'touchstart', 'keydown', 'scroll'].forEach(function(evt) {
-                window.removeEventListener(evt, loadInlineIframe, { passive: true });
+        var openBtn = document.getElementById('open-profile-form');
+        if (openBtn) {
+            openBtn.addEventListener('click', function () {
+                document.getElementById('profile-modal').classList.add('active');
+                if (!modalLoaded && modalIframe) {
+                    modalIframe.src = modalIframe.dataset.src;
+                    modalLoaded = true;
+                }
             });
         }
 
-        if (inlineIframe) {
-            ['mousemove', 'touchstart', 'keydown', 'scroll'].forEach(function(evt) {
-                window.addEventListener(evt, loadInlineIframe, { passive: true, once: true });
-            });
-        }
     })();
     </script>
 
