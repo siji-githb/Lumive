@@ -1238,6 +1238,12 @@ h4 {
         aspect-ratio: unset;
         min-height: 90vw;
         background-position: center top;
+        background: linear-gradient(to right,
+                rgba(45, 32, 23, 0.55) 0%,
+                rgba(45, 32, 23, 0.30) 35%,
+                transparent 65%),
+            url('assets/hero background-mobile.webp');
+        background-size: cover;
     }
 
     .hero-content {
@@ -1323,7 +1329,7 @@ h4 {
 
     .beauty-profile .container {
         min-height: unset;
-        background-image: linear-gradient(rgba(224, 187, 136, 0.7), rgba(250, 246, 240, 0.7)), url('assets/beauty profile.webp');
+        background-image: linear-gradient(rgba(224, 187, 136, 0.7), rgba(250, 246, 240, 0.7)), url('assets/beauty profile-mobile.webp');
         background-size: cover;
         background-position: left top;
         padding-top: 48px;
