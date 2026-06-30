@@ -3,10 +3,10 @@
     /* Colors */
     --gold: #C9A96E;
     --gold-light: #D4B87A;
-    --gold-dark: #7B5F2C;     /* darkened: was #8B6F3A — now 5.97:1 on white */
+    --gold-dark: #7B5F2C;    
     --brown-dark: #2D2017;
     --brown-medium: #5A4A3A;
-    --brown-light: #705E52;   /* darkened: was #8B7B6B — now 6.15:1 on white */
+    --brown-light: #705E52;  
     --cream: #FBF7F2;
     --cream-light: #FFF9F3;
     --white: #FFFFFF;
@@ -349,12 +349,10 @@ h4 {
     background-color: var(--cream-light);
 }
 
-.badge-card img {
-    width: auto;
-    height: auto;
-    max-width: 100px;
-    max-height: 100px;
-    flex-shrink: 0;
+.badge-card img,
+.about-icon img {
+    width: 100px;
+    height: 100px;
     object-fit: contain;
 }
 
@@ -546,16 +544,6 @@ h4 {
     line-height: 1.3;
 }
 
-.about-icon img {
-    width: auto;
-    height: auto;
-    max-width: 100px;
-    max-height: 100px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-
 /* 7. CLIENT REVIEWS */
 .reviews {
     background-color: var(--cream);
@@ -569,10 +557,46 @@ h4 {
     margin-bottom: 48px;
 }
 
-.reviews-grid {
-    display: grid;
+.reviews-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews-slide {
+    display: none;
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
+}
+
+.reviews-slide.active {
+    display: grid;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 48px;
+}
+
+.carousel-dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-light);
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color var(--ease), border-color var(--ease);
+}
+
+.carousel-dots .dot.active {
+    background-color: var(--gold-dark);
+    border-color: var(--gold-dark);
+}
+
+.carousel-dots .dot:hover {
+    border-color: var(--gold-dark);
 }
 
 .review-card {
@@ -624,34 +648,6 @@ h4 {
     font-weight: 600;
     color: var(--brown-dark);
 }
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 48px;
-}
-
-.carousel-dots .dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid var(--gold-light);
-    background-color: transparent;
-    padding: 0;
-    cursor: pointer;
-    transition: background-color var(--ease), border-color var(--ease);
-}
-
-.carousel-dots .dot.active {
-    background-color: var(--gold-dark);
-    border-color: var(--gold-dark);
-}
-
-.carousel-dots .dot:hover {
-    border-color: var(--gold-dark);
-}
-
 
 /* 8. BEAUTY PROFILE */
 .beauty-profile {
@@ -709,6 +705,8 @@ h4 {
 }
 
 .profile-feature img {
+    width: 60px;
+    height: 60px;
     flex-shrink: 0;
 }
 
